@@ -8,9 +8,6 @@ from game import get_cities, play_game
 console_handler = logging.StreamHandler()
 console_formatter = ColoredFormatter(
     fmt=(
-        """
-        * Покраска логов для консоли
-        """
         "%(asctime)s | "
         "%(log_color)s%(levelname)-8s%(reset)s | "
         "%(name)s | %(message)s"
