@@ -4,10 +4,10 @@ logger = logging.getLogger(__name__)
 def normalize_city(city: str) -> str:
     """
     Приводит название города к нижнему регистру.
-    Выбрасывает ValueError, если в названии есть пробелы.
+    Выбрасывает ValueError, если в названии есть цифры.
     """
-    if " " in city:
-        raise ValueError("Название города не должно содержать пробелов")
+    if any(char.isdigit() for char in city):
+        raise ValueError("Название города не должно содержать цифр")
     return city.lower()
 
 def get_cities(cities_data: list[dict]) -> set[str]:
