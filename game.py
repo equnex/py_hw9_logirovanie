@@ -1,6 +1,15 @@
 import logging
 logger = logging.getLogger(__name__)
 
+def normalize_city(city: str) -> str:
+    """
+    Приводит название города к нижнему регистру.
+    Выбрасывает ValueError, если в названии есть пробелы.
+    """
+    if " " in city:
+        raise ValueError("Название города не должно содержать пробелов")
+    return city.lower()
+
 def get_cities(cities_data: list[dict]) -> set[str]:
     """
     Подготавливает множество городов, извелкает названия городов из списка словарей.
@@ -11,7 +20,7 @@ def get_cities(cities_data: list[dict]) -> set[str]:
     """
     cities = set()
     for city in cities_data:
-        cities.add(city["name"].lower())
+        cities.add(normalize_city(city["name"]))
     return cities
 
 def rule_check(city1: str, city2: str) -> bool:
